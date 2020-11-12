@@ -1,0 +1,44 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { SessionData } from '../../shared/models/session-data.model';
+import { environment } from './../../../../environments/environment.prod';
+import { Globals } from '../../Shared/globals/globals';
+import { SessionStorageService } from './SessionStorageService';
+import {Observable} from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+
+export class AuthService {
+  private loginURL = `${environment.endpoint}/Authentication/login`;
+
+  constructor(
+    private http: HttpClient,
+    private globals: Globals,
+    private sessionService: SessionStorageService
+  ) {}
+
+  login(username: string, password: string): Observable<SessionData> {
+    return this.http.post<SessionData>(this.loginURL, {
+      username, password
+    }, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
+
+  logout(): void {
+    sessionStorage.clear();
+    this.globals.user = null;
+  }
+
+  getUser(): JSON | SessionData {
+    const currentUser = this.sessionService.getUser() ?? this.globals.user;
+    return currentUser;
+  }
+
+  getToken(): string {
+    let token = this.sessionService.getToken();
+    if (!token && this.globals.user) {
+      token = this.globals.user.token;
+    }
+    return token;
+  }
+}

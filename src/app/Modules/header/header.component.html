@@ -1,0 +1,52 @@
+<div id="global_header">
+  <div class="row">
+    <div class="col-md-2 col-md-offset-3" style="margin-top: 40px;">
+      <h1 style="color: snow;">KGames	&#10026;</h1>
+    </div>
+    <div class="col-md-1" style="margin-top: 40px; margin-left: -40px">
+      <button class="buttons" mat-button style="font-size: x-large" (click)="navigate('')">Catalog</button>
+    </div>
+    <div class="col-md-1" style="margin-top: 40px; margin-left: -20px">
+      <button class="buttons" mat-button style="font-size: x-large" [matMenuTriggerFor]="aboveMenu">Genre</button>
+      <mat-menu  #aboveMenu="matMenu" yPosition="above">
+        <button class="buttons" (click)="openGenre('FeeToPlay')" mat-menu-item>Free to Play</button>
+        <button class="buttons" (click)="openGenre('Action')" mat-menu-item>Action</button>
+        <button class="buttons" (click)="openGenre('Racing')" mat-menu-item>Racing</button>
+        <button class="buttons" (click)="openGenre('Strategy')" mat-menu-item>Strategy</button>
+        <button class="buttons" (click)="openGenre('Sports')" mat-menu-item>Sports</button>
+        <button class="buttons" (click)="openGenre('Simulation')" mat-menu-item>Simulation</button>
+      </mat-menu>
+    </div>
+    <div class="col-md-1" style="margin-top: 40px; margin-left: -40px">
+      <button class="buttons" mat-button style="font-size: x-large" [matMenuTriggerFor]="Menu">Categories</button>
+      <mat-menu  #Menu="matMenu" yPosition="above">
+        <button class="buttons" (click)="openCategory('TopSellers')" mat-menu-item>Top Sellers</button>
+        <button class="buttons" (click)="openCategory('NewReleases')" mat-menu-item>New Releases</button>
+        <button class="buttons" (click)="openCategory('Specials')" mat-menu-item>Specials</button>
+        <button class="buttons" (click)="openCategory('VirtualReality')" mat-menu-item>Virtual Reality</button>
+      </mat-menu>
+    </div>
+    <div *ngIf="checkUser()" class="col-md-1" style="margin-top: 40px;margin-left: 10px">
+      <button class="buttons" mat-button style="font-size: x-large" (click)="navigate('myGames')">My Games</button>
+    </div>
+    <div *ngIf="!checkUser()" style="margin-top: -90px">
+      <div class="col-md-1 offset-9">
+        <button class="buttons" mat-button style="font-size: small" (click)="navigate('/login')">Sign in </button>
+      </div>
+      <div class="col-sm-1" style=" font-size: large;color: darkgray; margin-left: -70px;margin-top: 5px" >
+        <p>|</p>
+      </div>
+      <div class="col-md-1 ">
+        <button class="buttons" mat-button style="font-size: small; margin-left: -136px" (click)="navigate('/registration')">Sign up </button>
+      </div>
+    </div>
+    <div *ngIf="checkUser()" style="margin-top: -90px">
+      <div class="col-md-1 offset-9">
+        <button class="buttons" mat-button style="font-size: small" [matMenuTriggerFor]="UserMenu" >{{User.userName}} &#9660;</button>
+        <mat-menu  #UserMenu="matMenu" yPosition="above">
+          <button class="buttons" (click)="logout()" mat-menu-item>Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+/deep/ .mat-menu-content {
+  background-color: #171a21 !important;
+}
+.buttons{
+  color: darkgray;
+}
+.buttons:hover{
+  color: white;
+}

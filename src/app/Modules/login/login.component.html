@@ -1,0 +1,41 @@
+<div class="row align-items-center">
+  <div class="col-md-3 col-md-offset-5" style="margin-top: 150px; text-align:center;">
+    <form [formGroup]="loginForm">
+      <mat-card style="justify-items: center">
+        <mat-card-title fxLayoutAlign="center">Sign in</mat-card-title>
+        <mat-card-content>
+          <mat-form-field class="full-width" style="width: 200px">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+            <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+              Required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Required
+            </mat-error>
+          </mat-form-field>
+
+          <div class="full-width">
+            <mat-checkbox formControlName="rememberMe" color="primary">Remember me</mat-checkbox>
+          </div>
+
+        </mat-card-content>
+        <mat-card-actions class="login-actions">
+          <button mat-raised-button id="login" (click)="login()" color="primary"
+                  [disabled]="loginForm.invalid || loading">Login</button>
+          <button mat-button id="resetPassword" (click)="resetPassword()" type="button">Reset password</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </form>
+  </div>
+
+</div>
