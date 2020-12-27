@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 offset-3 myAccountMainDiv">
+    <div class="col-md-4">
+      <br>
+      <img [src]="user.image" style="width: 190px; height: 140px; border: 1px solid gray"/>
+      <input style="width: 190px; margin-top: 10px" class="btn btn-primary" accept="image/*" type="file" name="file" id="file" (change)="onFileChanged($event)" />
+      <button style="width: 150px; margin-top: 20px; margin-bottom: 40px" type="button" (click)="openChangePassword()" class="btn btn-primary">Change password account</button>
+    </div>
+    <div class="col-md-2">
+      <br>
+      <br>
+      <h3 style="color:snow">{{user.userName}}</h3>
+    </div>
+    <div class="col-md-3 offset-3">
+      <br>
+      <h3 style="color:snow">Bank account: {{GetInvoice()}}$</h3>
+      <button style="width: 150px" type="button" (click)="openDialogDepositAccount()" class="btn btn-primary">Deposit account</button>
+    </div>
+
+  </div>
+
+</div>
+

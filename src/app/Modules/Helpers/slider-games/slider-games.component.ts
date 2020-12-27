@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {GamesService} from '../../Core/Services/GamesService';
+import {Game} from "../../Shared/models/Game";
+
 
 @Component({
   selector: 'app-slider-games',
@@ -8,25 +11,28 @@ import {Router} from "@angular/router";
 })
 export class SliderGamesComponent implements OnInit {
 
-  img: object;
-  imgs: object[];
-  id: number[] = [1, 2, 3];
-  links: string[] = ['./assets/Images/1.jpg', './assets/Images/2.jpg', './assets/Images/3.jpg'];
+  Data: Game[];
+  date: Date;
+  loader: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private gameService: GamesService) {
+    this.loader = false;
+    this.gameService.GetRecommendedGames().subscribe(
+      data => {
+        this.Data = data;
+        this.loader = true;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
-    this.img = {id: 1, link: './assets/Images/1.jpg'};
-    this.imgs[0] = this.img;
-    this.img = {id: 2, link: './assets/Images/2.jpg'};
-    this.imgs[1] = this.img;
-    this.img = {id: 3, link: './assets/Images/3.jpg'};
-    this.imgs[2] = this.img;
   }
 
   gameDetails(gameId): void {
     this.router.navigate(['/game/' + gameId]);
   }
-
 }

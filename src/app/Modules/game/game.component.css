@@ -1,3 +1,17 @@
 p{
   color: darkgrey
 }
+.commentsDiv{
+  border: 1px solid #242424;
+  color: darkgray;
+  padding: 10px;
+}
+textarea{
+  font-size: medium;
+  background: rgba(44,44,44,0.87);
+  color: darkgray;
+  width: 710px;
+
+  height: auto;
+  overflow: hidden;
+}

@@ -1,2 +1,7 @@
 html, body { height: 100%; width: 100% }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #171a21;}
+body { background: radial-gradient(circle farthest-side at 500px 1140px,#343464, #171a21);}
+button:focus{
+  outline: none !important;
+}
+
+/*html { overflow-x: hidden; }*/

@@ -1,0 +1,20 @@
+mat-button-toggle-group{
+  height: auto;
+  width: auto;
+  font-family: "Times New Roman";
+  font-size: medium;
+  background: transparent;
+  border: none;
+}
+.mat-button-toggle{
+  color: snow;
+  background: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.mat-button-toggle-checked{
+  background: #343464;
+}
+::ng-deep mat-tab-group{
+  overflow-x: hidden !important;
+}

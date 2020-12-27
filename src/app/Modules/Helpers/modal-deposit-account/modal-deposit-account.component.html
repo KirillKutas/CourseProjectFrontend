@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  <p>How much money do you want to add to your account?</p>
+  <mat-form-field>
+    <mat-label>Amount</mat-label>
+    <input type="number" matInput [(ngModel)]="bankAccount" #amount="ngModel"
+           max="100"
+           min="1"
+           required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button *ngIf="amount.valid" mat-button (click)="deposit()" [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+</div>

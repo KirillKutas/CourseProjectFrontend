@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {SessionData} from "../../Shared/models/session-data.model";
 
 @Injectable({providedIn: 'root'})
 
 export class SessionStorageService {
 
-  constructor() { }
+  constructor() {
+  }
 
   public saveToken(token: string): void {
     sessionStorage.removeItem('auth-token');
@@ -20,8 +22,16 @@ export class SessionStorageService {
     sessionStorage.setItem('auth-user', JSON.stringify(user));
   }
 
-  public getUser(): JSON {
+  public getUser(): SessionData {
     return JSON.parse(sessionStorage.getItem('auth-user'));
   }
 
+  public SaveInvoice(invoice: number): void {
+    sessionStorage.removeItem('bank-account');
+    sessionStorage.setItem('bank-account', invoice.toString());
+  }
+
+  public GetInvoice(): number {
+    return JSON.parse(sessionStorage.getItem('bank-account'));
+  }
 }

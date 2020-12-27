@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-6 offset-3">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{Game.image}}" style="width: 190px; height: 140px">
+        <input style="width: 190px; margin-top: 10px" class="btn btn-primary" accept="image/*" type="file" name="file"
+               id="file"
+               (change)="onFileChanged($event)"/>
+      </div>
+      <div class="col-md-8">
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Name</mat-label>
+          <input #gameName="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.gameName"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Price</mat-label>
+          <input #price="ngModel" style="color: darkgrey !important;font-size: large" type="number" matInput [(ngModel)]="Game.price"
+                 min="1"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Developer</mat-label>
+          <input #developer="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.developer"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Publisher</mat-label>
+          <input #publisher="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.publisher"
+                 required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <textarea
+          style="width: 400px"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="200"
+          #autosize="cdkTextareaAutosize"
+          [(ngModel)]="Game.description"
+          placeholder="Description">
+                </textarea>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label style="color: darkgrey !important;">Choose a release date</mat-label>
+          <input #releaseDate="ngModel" style="color: darkgrey !important;" matInput [matDatepicker]="picker" [(ngModel)]="Game.releaseDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" style="color: darkgrey !important;">
+      <div class="col-md-6">
+        <h4><u>Minimum system requirements:</u></h4>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">OC</mat-label>
+          <input #minSysReqOc="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.minSysReqOc"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Processor</mat-label>
+          <input #minSysReqProcessor="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.minSysReqProcessor"
+                 required>
+        </mat-form-field>
+        <mat-form-field style="margin: 10px">
+          <mat-label style="color: darkgrey !important;">RAM</mat-label>
+          <input #minSysReqRAM="ngModel" style="color: darkgrey !important;font-size: large;" type="text" matInput [(ngModel)]="Game.minSysReqRAM"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Video card</mat-label>
+          <input #minSysReqVideoCard="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.minSysReqVideoCard"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Disk space</mat-label>
+          <input #diskSpace="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.diskSpace"
+                 required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <h4><u>Recommended system requirements:</u></h4>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">OC</mat-label>
+          <input #recSysReqOc="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.recSysReqOc"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Processor</mat-label>
+          <input #recSysReqProcessor="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.recSysReqProcessor"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">RAM</mat-label>
+          <input #recSysReqRAM="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.recSysReqRAM"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label style="color: darkgrey !important;">Video card</mat-label>
+          <input #recSysReqVideoCard="ngModel" style="color: darkgrey !important;font-size: large" type="text" matInput [(ngModel)]="Game.recSysReqVideoCard"
+                 required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="fill">
+          <mat-label style="color: darkgrey !important;font-size: medium">Category</mat-label>
+          <select [(ngModel)]="Category.name" style="color: darkgrey !important;font-size: x-small" matNativeControl>
+            <option>None</option>
+            <option value="Specials">Specials</option>
+            <option value="Virtual reality">Virtual reality</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <h2 style="color: darkgrey">Genries</h2>
+        <section style="color: darkgrey" class="example-section">
+          <mat-checkbox [(ngModel)]="freeToPlay" class="example-margin">Free to play</mat-checkbox>
+          <mat-checkbox [(ngModel)]="action" class="example-margin">Action</mat-checkbox>
+          <mat-checkbox [(ngModel)]="racing" class="example-margin">Racing</mat-checkbox>
+          <mat-checkbox [(ngModel)]="strategy" class="example-margin">Strategy</mat-checkbox>
+          <mat-checkbox [(ngModel)]="sports" class="example-margin">Sports</mat-checkbox>
+          <mat-checkbox [(ngModel)]="simulation" class="example-margin">Simulation</mat-checkbox>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<button *ngIf="gameName.valid && price.valid && publisher.valid && developer.valid && releaseDate.valid &&
+minSysReqOc.valid && minSysReqProcessor.valid && minSysReqRAM.valid && minSysReqVideoCard.valid && diskSpace.valid &&
+recSysReqOc.valid && recSysReqProcessor.valid && recSysReqRAM.valid && recSysReqVideoCard.valid &&
+(freeToPlay !== false || action !== false || racing !== false || strategy !== false || sports !== false || simulation !== false) && checkPrice()"
+  style="margin-left: 1000px; width: 150px; height: 50px" type="button" class="btn btn-primary" (click)="Save()">Save game</button>
+

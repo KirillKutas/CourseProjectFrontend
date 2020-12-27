@@ -2,27 +2,40 @@
 <div>
   <div class="row">
     <div class="col-md-4 offset-3">
-      <h1 style="color: snow">GameName</h1>
+      <h1 style="color: snow">{{Game.gameName}}</h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-4 offset-3">
-      <img style="border: 2px groove black" src="./assets/Images/1.jpg" class="d-block w-100" alt="NameGame">
+      <img style="border: 2px groove black" src="{{Game.image}}" class="d-block w-100" alt="NameGame">
     </div>
-    <div class="col-md-3 row" >
-      <div *ngIf="!checkState()">
-        <h3 style="color: snow">Price: </h3>
-        <button style="width: 300px; height: 50px; font-size: large;" type="button" class="btn btn-primary">Buy</button>
+    <div class="col-md-4 row" >
+      <h3 *ngIf="Game.price !== 0" style="color: snow">Price: {{Game.price}}$</h3>
+      <h3 *ngIf="Game.price === 0" style="color: snow">Free to play</h3>
+      <div *ngIf="checkUser()">
+        <div *ngIf="!stateFlag">
+          <button *ngIf="Game.price !== 0" (click)="BuyGame(Game.id, Game.price)" style="width: 300px; height: 50px; font-size: large;" type="button" class="btn btn-primary">Buy</button>
+          <button *ngIf="Game.price === 0" (click)="BuyGame(Game.id, Game.price)" style="width: 300px; height: 50px; font-size: large;" type="button" class="btn btn-primary">Add to my library</button>
+        </div>
+        <div style="text-align: center" *ngIf="stateFlag">
+          <h3 style="color: #a3cf06;background: linear-gradient(90deg,#8fb505,darkolivegreen)">{{Game.gameName}} is already in your library</h3>
+        </div>
       </div>
-      <div style="text-align: center" *ngIf="checkState()">
-        <h3 style="color: #a3cf06;background: linear-gradient(90deg,#8fb505,darkolivegreen)">GAMENAME is already in your library</h3>
+      <div style="width: 400px" *ngIf="!checkUser()">
+        <h3 style="color: snow;background: linear-gradient(90deg,#a90000,#3e0000)">To buy the game you need to log in to your account</h3>
       </div>
-      <div class="row">
-        <p>GENRE: </p>
-        <p>RELEASE DATE: </p>
-        <p>DEVELOPER: </p>
-        <p>PUBLISHER: </p>
+
+      <div class="row" style="color: snow">
+        <div *ngIf="Game.genres.length !== 0"><u>GENRE:</u>
+          <div *ngFor="let genre of Game.genres">{{genre.name}}</div>
+        </div>
+        <div *ngIf="Game.categories.length !== 0"><u>CATEGORIES:</u>
+          <div *ngFor="let category of Game.categories">{{category.name}}</div>
+        </div>
+        <div><u>RELEASE DATE:</u> {{Game.stringReleaseDate}}</div>
+        <div><u>DEVELOPER:</u> {{Game.developer}}</div>
+        <div><u>PUBLISHER:</u> {{Game.publisher}}</div>
       </div>
     </div>
   </div>
@@ -30,12 +43,110 @@
 </div>
 
 <div class="row">
-  <div class="col-md-7 offset-3">
+  <div class="col-md-7 offset-3" style="color: darkgrey">
     <div style="font-size: large">
       <p style="border-bottom: 1px snow solid; text-align: center">ABOUT THIS GAME</p>
     </div>
+    <p>{{Game.description}}</p>
     <div style="font-size: large">
       <p style="border-bottom: 1px snow solid; text-align: center">SYSTEM REQUIREMENTS</p>
     </div>
+    <div class="col-md-4">
+      <h4><u>Minimum system requirements:</u></h4>
+      <h5><u>OC</u>: {{Game.minSysReqOc}}</h5>
+      <h5><u>Processor</u>: {{Game.minSysReqProcessor}}</h5>
+      <h5><u>Ram</u>: {{Game.minSysReqRAM}}</h5>
+      <h5><u>Video card</u>: {{Game.minSysReqVideoCard}}</h5>
+      <h5><u>Disk space</u>: {{Game.diskSpace}}</h5>
+    </div>
+    <div class="col-md-4 offset-3">
+      <h4><u>Recommended system requirements:</u></h4>
+      <h5><u>OC</u>: {{Game.recSysReqOc}}</h5>
+      <h5><u>Processor</u>: {{Game.recSysReqProcessor}}</h5>
+      <h5><u>Ram</u>: {{Game.recSysReqRAM}}</h5>
+      <h5><u>Video card</u>: {{Game.recSysReqVideoCard}}</h5>
+      <h5><u>Disk space</u>: {{Game.diskSpace}}</h5>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 offset-3">
+    <div style="font-size: large">
+      <p style="border-bottom: 1px snow solid; text-align: center">COMMENTS</p>
+    </div>
+
+    <div style="background: rgba(44,44,44,0.87);margin-top: -11px; padding: 10px">
+
+      <div class="offset-1" *ngIf="checkUser()">
+        <textarea
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="200"
+          #autosize="cdkTextareaAutosize"
+          [(ngModel)]="NewComment"
+          placeholder="Leave a comment">
+        </textarea>
+      </div>
+      <div class="offset-9" style="padding-bottom: 10px;margin-top: 10px" *ngIf="checkUser()">
+        <button (click)="saveComment();" type="button" style="height: 40px" class="btn btn-dark">Leave a comment</button>
+      </div>
+
+
+      <div class="commentsDiv">
+
+        <div *ngIf="Game.comments.length === 0" style="margin-top: 20px">
+          <h4>No comments for the game yet</h4>
+        </div>
+
+        <div *ngIf="Game.comments.length !== 0">
+
+          <div class="row" *ngFor="let item of Game.comments" style="padding: 10px; border-top: solid 1px #242424">
+            <div class="col-md-2">
+              <img src="{{item.user.image}}" style="width: 80px; height: 60px"/>
+            </div>
+            <div class="col-lg-1" style="margin-left: -50px">
+              <h4>{{item.user.userName}}</h4>
+              <h5>{{item.stringPublicationDate}}</h5>
+            </div>
+            <div class="col-md-6 offset-1" style="margin-top: 25px">
+              <div *ngIf="updateCommentFlag === false || !checkUserId(item.user.id)" style="width: 400px;overflow-wrap: break-word;">{{item.text}}</div>
+              <div *ngIf="updateCommentFlag && checkUserId(item.user.id)">
+                <textarea
+                  style="width: 400px"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="3"
+                  cdkAutosizeMaxRows="200"
+                  #autosize="cdkTextareaAutosize"
+                  [(ngModel)]="UpdateComment"
+                  placeholder="Update a comment">
+                </textarea>
+                <div class="col-md-1 offset-6" *ngIf="updateCommentFlag && checkUserId(item.user.id)">
+                  <button (click)="updateCommentFlag = false" type="button" style="height: 40px" class="btn btn-dark">Cancel</button>
+                   </div>
+                <div class="col-md-1 offset-1" *ngIf="updateCommentFlag && checkUserId(item.user.id)">
+                <button (click)="UpdateCommentFunction(item.id);" type="button" style="height: 40px" class="btn btn-dark">Update a comment</button>
+                </div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-1" *ngIf="checkUserId(item.user.id)">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button style="color: darkgray" (click)="OpenUpdateComment(item.text)" mat-menu-item>Update comment</button>
+                <button style="color: darkgray" (click)="DeleteComment(item.id)" mat-menu-item>Delete comment</button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
   </div>
 </div>

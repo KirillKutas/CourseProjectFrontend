@@ -25,6 +25,21 @@ import { SearchComponent } from './Modules/search/search.component';
 import { GenreComponent } from './Modules/genre/genre.component';
 import { CategoriesComponent } from './Modules/categories/categories.component';
 import { GameComponent } from './Modules/game/game.component';
+import { SpecialOffersSliderComponent } from './Modules/Helpers/special-offers-slider/special-offers-slider.component';
+import { CatalogContentComponent } from './Modules/Helpers/catalog-content/catalog-content.component';
+import { CatalogTabsComponent } from './Modules/Helpers/catalog-tabs/catalog-tabs.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { AccountComponent } from './Modules/account/account.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ModalDepositAccountComponent } from './Modules/Helpers/modal-deposit-account/modal-deposit-account.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ModalChangePasswordComponent } from './Modules/Helpers/modal-change-password/modal-change-password.component';
+import { AddGameComponent } from './Modules/add-game/add-game.component';
+import { ManageGameComponent } from './Modules/manage-game/manage-game.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +53,15 @@ import { GameComponent } from './Modules/game/game.component';
     SearchComponent,
     GenreComponent,
     CategoriesComponent,
-    GameComponent
+    GameComponent,
+    SpecialOffersSliderComponent,
+    CatalogContentComponent,
+    CatalogTabsComponent,
+    AccountComponent,
+    ModalDepositAccountComponent,
+    ModalChangePasswordComponent,
+    AddGameComponent,
+    ManageGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +77,13 @@ import { GameComponent } from './Modules/game/game.component';
     MatCheckboxModule,
     MatProgressBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule,
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]

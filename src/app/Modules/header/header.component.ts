@@ -3,8 +3,8 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import {Router} from '@angular/router';
 import {Globals} from '../Shared/globals/globals';
 import {SessionStorageService} from '../Core/Services/SessionStorageService';
-import {SessionData} from "../Shared/models/session-data.model";
-import {AuthService} from "../Core/Services/auth.service";
+import {SessionData} from '../Shared/models/session-data.model';
+import {AuthService} from '../Core/Services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +13,7 @@ import {AuthService} from "../Core/Services/auth.service";
 })
 export class HeaderComponent implements OnInit {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  searchString: string;
 
   User: JSON | SessionData;
 
@@ -21,11 +22,21 @@ export class HeaderComponent implements OnInit {
   }
 
   openGenre(param): void {
-    this.router.navigate(['/genre/' + param]);
+    const url = this.router.url.split('/');
+    if (url[1] === 'genre') {
+      window.location.href = 'http://localhost:4200/genre/' + param;
+    } else {
+      this.router.navigate(['/genre/' + param]);
+    }
   }
 
   openCategory(param): void {
-    this.router.navigate(['/category/' + param]);
+    const url = this.router.url.split('/');
+    if (url[1] === 'category') {
+      window.location.href = 'http://localhost:4200/category/' + param;
+    } else {
+      this.router.navigate(['/category/' + param]);
+    }
   }
 
   logout(): void {
@@ -43,8 +54,33 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  getInvoice(): number {
+    return this.sessionStorage.GetInvoice();
+  }
+
+  getImage(): string {
+    return this.sessionStorage.getUser().image;
+  }
+
   triggerMenu(): void {
     this.trigger.openMenu();
+  }
+
+  search(): void {
+    const url = this.router.url.split('/');
+    if (url[1] === 'search') {
+      window.location.href = 'http://localhost:4200/search/' + this.searchString;
+    } else {
+      this.router.navigate(['/search/' + this.searchString]);
+    }
+  }
+
+  GetRole(): number {
+    const user = this.sessionStorage.getUser();
+    if (user !== null) {
+      return user.roleId;
+    }
+    return 0;
   }
 
   constructor(private router: Router,

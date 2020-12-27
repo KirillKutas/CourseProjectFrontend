@@ -3,13 +3,9 @@
     <h3 style="color: snow">FEATURED & RECOMMENDED</h3>
     <app-slider-games></app-slider-games>
   </div>
-  <div class="col-md-2 offset-1">
-    <mat-form-field style="font-size: 15px">
-      <input type="text" style="border-radius:5px !important;background-color: snow !important;" matInput [(ngModel)]="searchString" placeholder="search">
-      <button mat-button *ngIf="searchString" style="background-color: snow !important;" matSuffix mat-icon-button aria-label="Search" (click)="search()">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
+</div>
+<div class="row">
+  <div class="col-md-6 offset-3">
+    <app-catalog-tabs></app-catalog-tabs>
   </div>
 </div>
-

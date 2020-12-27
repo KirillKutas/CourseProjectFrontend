@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('savedUsername', username);
           this.sessionStorage.saveToken(data.token);
           this.sessionStorage.saveUser(data);
+          this.sessionStorage.SaveInvoice(data.invoice);
         } else {
           this.globals.user = data;
           localStorage.removeItem('savedUsername');

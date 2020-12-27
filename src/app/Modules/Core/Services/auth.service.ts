@@ -29,7 +29,7 @@ export class AuthService {
     this.globals.user = null;
   }
 
-  getUser(): JSON | SessionData {
+  getUser(): SessionData {
     const currentUser = this.sessionService.getUser() ?? this.globals.user;
     return currentUser;
   }

@@ -1,7 +1,5 @@
-export class SessionData {
+import {User} from './User';
+
+export class SessionData extends User {
   token: string;
-  userID: number;
-  userName: string;
-  /*userEmail: string;*/
-  roleId: number;
 }

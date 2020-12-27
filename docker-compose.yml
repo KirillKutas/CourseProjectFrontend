@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  front1:
+    image: ${DOCKER_REGISTRY-}kirillkutas/front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4201:4200"
+    

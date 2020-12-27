@@ -7,7 +7,7 @@
       <button class="buttons" mat-button style="font-size: x-large" (click)="navigate('')">Catalog</button>
     </div>
     <div class="col-md-1" style="margin-top: 40px; margin-left: -20px">
-      <button class="buttons" mat-button style="font-size: x-large" [matMenuTriggerFor]="aboveMenu">Genre</button>
+      <button class="buttons" mat-button style="font-size: x-large" [matMenuTriggerFor]="aboveMenu">Genres</button>
       <mat-menu  #aboveMenu="matMenu" yPosition="above">
         <button class="buttons" (click)="openGenre('FeeToPlay')" mat-menu-item>Free to Play</button>
         <button class="buttons" (click)="openGenre('Action')" mat-menu-item>Action</button>
@@ -41,12 +41,25 @@
       </div>
     </div>
     <div *ngIf="checkUser()" style="margin-top: -90px">
-      <div class="col-md-1 offset-9">
-        <button class="buttons" mat-button style="font-size: small" [matMenuTriggerFor]="UserMenu" >{{User.userName}} &#9660;</button>
+      <div class="col-md-5 offset-9">
+        <img [src]="getImage()" style="width: 30px; height: 20px;border: 1px solid gray"/>
+        <button class="buttons" mat-button style="font-size: small; margin-left: -10px" [matMenuTriggerFor]="UserMenu" >{{User.userName}} &#9660;</button>
+        <h5 style="color: darkgray; margin-left: 150px;margin-top: -28px">{{getInvoice()}}$</h5>
         <mat-menu  #UserMenu="matMenu" yPosition="above">
+          <button class="buttons" (click)="navigate('/account')" mat-menu-item>My account</button>
+          <button class="buttons" *ngIf="GetRole() === 1" (click)="navigate('/manageGame')" mat-menu-item>Manage Game</button>
           <button class="buttons" (click)="logout()" mat-menu-item>Logout</button>
         </mat-menu>
+
       </div>
+    </div>
+    <div class="col-md-3 offset-9" style="margin-top: -60px">
+      <mat-form-field style="font-size: 15px">
+        <input type="text" style="border-radius:5px !important;background-color: snow !important;" matInput [(ngModel)]="searchString" placeholder="search">
+        <button mat-button *ngIf="searchString" style="background-color: snow !important;" matSuffix mat-icon-button aria-label="Search" (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
     </div>
   </div>
 </div>

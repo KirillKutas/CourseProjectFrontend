@@ -1,0 +1,23 @@
+<div class="mainDiv">
+<br>
+<br>
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let item of Games" class="row myRow" style="width: 730px" (dblclick)="gameDetails(item.id)">
+        <div class="col-md-1">
+          <img src="{{item.image}}"/>
+        </div>
+        <div class="col-md-7" style="margin-left: 100px">
+          <h3>{{item.gameName}}</h3>
+          <h6 style="margin-top: -15px"><u>Price</u>: {{item.price}}$</h6>
+          <h6 style="margin-top: -15px">{{item.description}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 10px">
+    <div class="col-md-1 offset-10" style="margin-bottom: 10px">
+      <button (click)="ShowAll()" class="btn btn-primary">Show all</button>
+    </div>
+  </div>
+</div>

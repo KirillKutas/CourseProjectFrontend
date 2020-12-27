@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-1 offset-2">
+    <button type="button" (click)="AddNew('new')"  class="btn btn-primary">Add new</button>
+  </div>
+  <div class="col-md-7 offset-3">
+    <table class="table" style="color: darkgrey">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Release date</th>
+        <th scope="col">Developer</th>
+        <th scope="col">Publisher</th>
+        <th scope="col">Control</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of Games">
+        <td>{{item.gameName}}</td>
+        <td>{{item.stringReleaseDate}}</td>
+        <td>{{item.developer}}</td>
+        <td>{{item.publisher}}</td>
+        <td>
+          <button type="button" (click)="Update(item.id)" class="btn btn-secondary">Update</button>
+          <button type="button" (click)="Delete(item.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

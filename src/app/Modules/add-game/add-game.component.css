@@ -1,0 +1,20 @@
+textarea {
+  font-size: medium;
+  background: rgba(44, 44, 44, 0.87);
+  color: darkgray;
+  width: 710px;
+
+  height: auto;
+  overflow: hidden;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+mat-checkbox {
+  margin: 10px;
+  font-family: Corbel;
+}
+mat-form-field {
+  margin: 10px;
+}

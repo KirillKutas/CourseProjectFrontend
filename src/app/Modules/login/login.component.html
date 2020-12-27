@@ -23,15 +23,15 @@
             </mat-error>
           </mat-form-field>
 
-          <div class="full-width">
+          <!--<div class="full-width">
             <mat-checkbox formControlName="rememberMe" color="primary">Remember me</mat-checkbox>
-          </div>
+          </div>-->
 
         </mat-card-content>
         <mat-card-actions class="login-actions">
           <button mat-raised-button id="login" (click)="login()" color="primary"
                   [disabled]="loginForm.invalid || loading">Login</button>
-          <button mat-button id="resetPassword" (click)="resetPassword()" type="button">Reset password</button>
+          <!--<button mat-button id="resetPassword" (click)="resetPassword()" type="button">Reset password</button>-->
         </mat-card-actions>
       </mat-card>
       <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
